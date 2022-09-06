@@ -60,7 +60,6 @@ export default function DetailPage() {
             playing={true}
             muted={true}
             controls={true}
-            light={true}
           />
         </>
       )}
