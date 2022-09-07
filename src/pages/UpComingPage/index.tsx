@@ -6,7 +6,7 @@ export default function UpComingPage() {
   return (
     <Container>
       <PageTitle title="UPCOMING MOVIES" />
-      <InfiniteScroll callApi={getUpcoming}/>
+      <InfiniteScroll api={getUpcoming} unique='/movie/upcoming'/>
     </Container>
   );
 }
