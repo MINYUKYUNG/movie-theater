@@ -2,7 +2,7 @@ import theme from '@styles/theme';
 import styled from 'styled-components';
 
 export const Container = styled.header`
-  width: 100vw;
+  width: 100%;
   padding: 20px 45px;
   display: flex;
   justify-content: space-between;
@@ -10,6 +10,7 @@ export const Container = styled.header`
   background-color: ${theme.colors.SIDE};
 
   > img {
+    cursor: pointer;
     width: auto;
     height: 40px;
   }
