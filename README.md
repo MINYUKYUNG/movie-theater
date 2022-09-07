@@ -138,16 +138,19 @@ root
 
 
 ## Best Practice
-### 1. 컴포넌트에서 JSX 파일과 styled-component 파일을 분리했습니다.  
+### 1. 컴포넌트에서 tSX 파일과 styled-component 파일을 분리했습니다.  
 💡 이유 : styled-componet 파일이 길어지면서 한 파일 내에서 JSX 코드와 CSS 코드를 동시에 보기가 어려워져, 가독성을 위해 분리하였습니다. 추가적으로 style 컴포넌트에는 앞에 S.을 포함해 네이밍을 하여, 일반 컴포넌트와 구분하였습니다.
 
 ### 2. 공통적으로 쓰는 컴포넌트를 Layout(/src/components/common/layout) 안에서 구성하고 Routes 파일에 적용했습니다. (Navigation, Footer, Header).  
 💡 이유 : 최대한 코드 양을 줄이기 위해서 이며, 코드가 많아지면 빌드 속도 및 렌더링 속도가 저하되기 때문입니다. 또한, import의 빈도도 줄일수 있습니다.
 
-### 3. 많은 컴포넌트, 코드를 export 해서 관리해야 하는 경우 index.js 파일을 만들어 import 경로를 줄였습니다.  
+### 3. 많은 컴포넌트, 코드를 export 해서 관리해야 하는 경우 index.ts 파일을 만들어 import 경로를 줄였습니다.  
 💡 이유 : import 경로가 길어지면 가독성이 떨어지고, 파일 추적이 불편하다는 단점이 있기때문입니다. 이를 줄이기 위해 각 root 폴더에 index.js 파일을 만들어 export default 핸들링을 했습니다.
 
-### 4. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
+### 4. 무한스크롤 컴포넌트, useInfiQry 훅 분리로 재사용 가능하도록 추상화 하였습니다.  
+💡 이유 : 무한스크롤이 들어가는 페이지들에서 재사용을 위해 컴포넌트화 했고 ,  cache개념이 쓰이는 부분을 커스텀훅으로 만들어서 재사용했습니다.
+
+### 5. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
 💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서, 같은 구조의 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 분리하여 구성했습니다. 
  - Card(카드)
  - CardContainer(Card를 구성하는 컨태이너)
