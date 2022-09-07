@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import NO_IMAGE from '../../assets/no_image.png';
 import * as S from './style';
-import StarIcon from '../../assets/svgs/star-icon.svg';
 
 interface Movie {
   title: string;

@@ -1,9 +1,9 @@
 import { Card, CardContainer } from '@components/index';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
-import Triangle from '../../assets/svgs/ball-triangle.svg';
 import { FaChevronCircleUp } from 'react-icons/fa';
 import * as S from './style';
+import Loading from '../Loading'
 
 interface MovieList {
   id: number;
@@ -13,49 +13,61 @@ interface MovieList {
   key: number;
 }
 
-export default function InfiniteScroll({ callApi }) {
+export default function InfiniteScroll(api: { callApi: any; }) {
+  const { callApi } = api;
   const scroll = useRef();
-  const [loading, setLoading] = useState(true);
+  const [up, setUp] = useState(false);
 
-  const { data, error, fetchNextPage } = useInfiniteQuery(
-    ['posts'],
-    ({ pageParam = 1 }) => callApi(pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        return lastPage.page + 1;
-      },
-    }
-  );
+  const scrollControl = () => {
+    if (window.pageYOffset > 300) setUp(true);
+    else setUp(false);
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', scrollControl);
+    return () => window.removeEventListener('scroll', scrollControl);
+  }, []);
+
+  const goUp = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  const { data, error, fetchNextPage } = useInfiniteQuery(['posts', `${callApi}`], ({ pageParam = 1 }) => callApi(pageParam), {
+    getNextPageParam: (lastPage) => {
+      return lastPage.page + 1;
+    },
+  });
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         io.unobserve(entry.target);
-        fetchNextPage();
+        setTimeout(() => {
+          fetchNextPage();
+        }, 1500);
       }
     });
   });
 
   useEffect(() => {
-    console.log(callApi);
     scroll.current && io.observe(scroll.current);
   }, [data]);
 
-  if (!data) return <div>loading...</div>;
-  if (error) return <div>failed to load</div>;
+  if (!data) return <S.LoadingBox>loading...</S.LoadingBox>;
+  if (error) return <S.LoadingBox>failed to load</S.LoadingBox>;
 
-  const result = data.pages.map((page) => {
+  const CARD_IMG_URL = 'https://image.tmdb.org/t/p/original';
+  const cards = data.pages.map((page) => {
     return page.results.map((movie: MovieList) => {
       return (
         <Card
           key={movie.id}
           id={movie.id}
-          onLoad={() => setLoading(false)}
-          imageUrl={
-            loading
-              ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-              : ''
-          }
+          imageUrl={`${CARD_IMG_URL}${movie.poster_path}`}
           title={movie.title}
           rate={movie.vote_average}
         />
@@ -63,19 +75,22 @@ export default function InfiniteScroll({ callApi }) {
     });
   });
 
-  const goUp = () => {
-    window.scrollTo(0, 0);
+  const scrollTopBtn = () => {
+    if (!up) return null
+    return (
+      <S.ScrollTopBtn onClick={goUp}>
+        <FaChevronCircleUp />
+      </S.ScrollTopBtn>
+    )
   };
 
   return (
     <S.ScrollBox>
-      <CardContainer>{result}</CardContainer>
-      <S.TriangleBox ref={scroll}>
-        <S.TriangleImg src={Triangle} alt="Triangle" />
-      </S.TriangleBox>
-      <S.ScrollTopBtn onClick={goUp}>
-        <FaChevronCircleUp />
-      </S.ScrollTopBtn>
+      <CardContainer>{cards}</CardContainer>
+      <S.LoadingBox ref={scroll}>
+        <Loading />
+      </S.LoadingBox>
+      {scrollTopBtn()}
     </S.ScrollBox>
   );
 }
