@@ -1,3 +1,4 @@
+import { getPopular } from '@apis/index';
 import { Card, CardContainer, Container, PageTitle } from '@components/index';
 import { useEffect, useState } from 'react';
 import BANNER from '../../assets/banner.png';
@@ -12,16 +13,10 @@ interface MovieList {
 
 export default function Homepage() {
   const [movieList, setMovieList] = useState<MovieList[] | []>([]);
+  const [pageNumber, setPageNumber] = useState(1);
+
   useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=ko-kr&page=1`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const { results } = data;
-        console.log(results)
-        setMovieList([...results]);
-      });
+    getPopular(pageNumber).then((res) => setMovieList(res.results));
   }, []);
 
   return (
@@ -31,20 +26,17 @@ export default function Homepage() {
         <PageTitle title="WHAT’S POPULAR" />
         <CardContainer>
           {!movieList && <div>Loading...</div>}
-          {movieList &&
-            movieList.map((movie: MovieList) => {
-              return (
-                <Card
-                  key={movie.id}
-                  id={movie.id}
-                  imageUrl={
-                    'https://image.tmdb.org/t/p/original' + movie.poster_path
-                  }
-                  title={movie.title}
-                  rate={movie.vote_average}
-                />
-              );
-            })}
+          {movieList?.map((movie) => (
+            <Card
+              key={movie.id}
+              id={movie.id}
+              imageUrl={
+                'https://image.tmdb.org/t/p/original' + movie.poster_path
+              }
+              title={movie.title}
+              rate={movie.vote_average}
+            />
+          ))}
         </CardContainer>
       </Container>
     </>

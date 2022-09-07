@@ -12,7 +12,12 @@ interface Movie {
 
 export default function Card({ title, imageUrl, rate, id }: Movie) {
   const navigate = useNavigate();
-  const url = imageUrl === undefined ? NO_IMAGE : imageUrl;
+  const url =
+    imageUrl === 'https://image.tmdb.org/t/p/originalnull' ||
+    imageUrl === undefined
+      ? NO_IMAGE
+      : imageUrl;
+
   return (
     <S.Card>
       <S.Poster
@@ -21,7 +26,7 @@ export default function Card({ title, imageUrl, rate, id }: Movie) {
         }}
         src={url}
       />
-      <S.Title>{title}</S.Title>
+      <S.Title onClick={() => console.log(imageUrl)}>{title}</S.Title>
       <S.RateContainer>
         <img src={StarIcon} alt="star_icon" />
         <S.Rate>{rate}</S.Rate>
