@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Container } from '@components/index';
 import { Card, ExplainContainer, DetailContainer } from './components';
-import ReactPlayer from 'react-player/lazy';
 import { getMovieDetail, getMovieDetailVideos } from '@apis/index';
 import * as S from './style';
 
@@ -67,14 +66,6 @@ export default function DetailPage() {
           </DetailContainer>
           <S.OverViewText>{movie.overview}</S.OverViewText>`
           {movieVideos?.length > 0 ? (
-            // <ReactPlayer
-            //   url={`https://www.youtube.com/embed/${movieVideos[0]?.key}`}
-            //   width="100%"
-            //   height="42vw"
-            //   playing={true}
-            //   muted={true}
-            //   controls={true}
-            // />
             <iframe
               src={`https://www.youtube.com/embed/${movieVideos[0]?.key}?autoplay=1&mute=1`}
               frameBorder="0"

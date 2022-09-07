@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import NO_IMAGE from '../../assets/images/no_image.png';
 import * as S from './style';
+import { SyntheticEvent } from 'react';
 
 interface Movie {
   title: string;
@@ -17,13 +18,16 @@ export default function Card({ title, imageUrl, rate, id }: Movie) {
     imageUrl === undefined
       ? NO_IMAGE
       : imageUrl;
-
+  const onErrorImg = (event: SyntheticEvent<HTMLImageElement, Event>) => {
+    event.currentTarget.src = NO_IMAGE;
+  };
   return (
     <S.Card>
       <S.ImgWrap>
         <S.Poster
+          onError={onErrorImg}
           onClick={() => {
-            navigate(`/detail/${id}`);
+            navigate(`/${id}`);
           }}
           src={url}
         />
