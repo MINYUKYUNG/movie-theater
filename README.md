@@ -7,7 +7,7 @@
 
 ## 배포 링크
 
-
+https://hotsix-imlab.netlify.app/
 
 <br/>
 
@@ -54,55 +54,51 @@ $ npm start
 
 ## 폴더 구조
 
-# 누군가 바꿔주세요
-
 ```
 root
+├── .babelrc
+├── .eslintrc
 ├── .vscode
 ├── .prettierrc
-├── .eslintrc
 ├── package-lock.json
 ├── package.json
-├── jsconfig.json
+├── tsconfig.json
 ├── public
 |   ├── favicon.ico
-|   ├── index.html
-|   ├── data
-|   └── images
+|   └── index.html
+├── config
+|   ├── webpack.common.js
+|   ├── webpack.dev.js
+|   └── webpack.prod.js
 └── src
+    ├── apis
+    ├── assets
     ├── components
-    ├── constants
     ├── hooks
     ├── libs
     ├── pages
-    ├── recoil
     ├── routes
     ├── styles
-    ├── theme
-    ├── utils
     ├── App.jsx
+    ├── types.d.ts
     └── index.js
 ```
 
-# 누군가 바꿔주세요
-
 |폴더|구분|
 |:--|:--|
+|apis|api함수들을 모아둔 폴더|
+|assets|더미 및 이미지 등 로컬 파일|
 |components|코드 재사용을 위한 컴포넌트 관리형 폴더|
-|pages|url주소에 따른 페이지 구성 폴더|
+|hooks|react의 커스텀 hook을 관리하는 폴더|
 |libs|전역함수 및 변수 관리 폴더|
+|pages|url주소에 따른 페이지 구성 폴더|
 |routes|라우팅 관련 처리 폴더|
 |styles|전역으로 사용하는 style 관리 폴더|
-|theme|재사용을 위한 CSS 관리 폴더|
-|utils|유틸 함수 관리 폴더|
-|constants|더미 및 이미지 등 로컬 파일|
 <br/>
-
-# 누군가 바꿔주세요
 
 ## 디자인 시안 by 강다현
 
-[피그마 바로가기]()
+[피그마 바로가기](https://www.figma.com/file/XfhbCGKRROJevroxACFMe6/MovieTrailer?node-id=0%3A1)
 
 <br />
 
