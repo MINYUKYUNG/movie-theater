@@ -36,6 +36,7 @@ export const FurtherContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 8px;
+  align-items: center;
 `;
 
 export const FurtherTitle = styled.div`
@@ -50,4 +51,6 @@ export const FurtherContent = styled.div`
   font-weight: 400;
   text-align: left;
   margin-left: 20px;
+  display: flex;
+  align-items: center;
 `;
