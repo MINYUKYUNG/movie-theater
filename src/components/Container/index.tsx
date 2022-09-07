@@ -1,5 +1,9 @@
 import * as S from './style';
 
-export default function Container({ children }: any) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function Container({ children }: Props) {
   return <S.Container>{children}</S.Container>;
 }
