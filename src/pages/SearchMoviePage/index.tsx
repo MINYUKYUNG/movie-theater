@@ -1,4 +1,10 @@
-import { Card, CardContainer, Container, PageTitle } from '@components/index';
+import {
+  Card,
+  CardContainer,
+  Container,
+  PageTitle,
+  Loading,
+} from '@components/index';
 import { useLocation } from 'react-router-dom';
 import { useInfiQry } from '@hooks/useInfiQry';
 import { Fragment } from 'react';
@@ -13,9 +19,9 @@ interface MovieList {
 export default function SearchMoviePage() {
   const location = useLocation();
   const { value } = location.state as { value: string };
-  const { movies, refetch, isLoading, ref } = useInfiQry(value);
+  const { movies, isLoading, ref } = useInfiQry(value);
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loading />;
   return (
     <Container>
       <PageTitle title={`'${value}' 검색결과`} />
