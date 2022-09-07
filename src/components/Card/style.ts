@@ -1,37 +1,43 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  height: 21vw;
-  margin-right: 30px;
-  margin-bottom: 40px;
   &:hover {
     position: relative;
     top: 2px;
   }
 `;
-
+export const ImgWrap = styled.div`
+  width: 100%;
+  height: 18.5vw;
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+`;
 export const Poster = styled.img`
   width: 100%;
-  height: 80%;
-  border-radius: 10px;
+  height: 100%;
   cursor: pointer;
 `;
 
 export const Title = styled.div`
   font-size: ${({ theme }) => theme.fontSize.SMALL};
   font-weight: 400;
+  line-height: 16px;
   color: ${({ theme }) => theme.colors.WHITE};
-  margin-top: 9px;
+  margin-bottom: 5px;
 `;
 
 export const RateContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSize.X_SMALL};
 `;
 export const Rate = styled.div`
+  height: 9px;
   font-size: ${({ theme }) => theme.fontSize.X_SMALL};
   color: ${({ theme }) => theme.colors.MAIN};
   font-weight: 400;
-  margin-top: 3px;
-  margin-left: 2px;
+  margin-left: 5px;
 `;

@@ -8,6 +8,8 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useInfiQry } from '@hooks/useInfiQry';
 import { Fragment } from 'react';
+import { FaChevronCircleUp } from 'react-icons/fa';
+import * as S from './style';
 
 interface MovieList {
   id: number;
@@ -42,6 +44,9 @@ export default function SearchMoviePage() {
           </Fragment>
         ))}
         <button ref={ref} />
+        <S.ScrollTopBtn onClick={() => window.scrollTo(0, 0)}>
+          <FaChevronCircleUp />
+        </S.ScrollTopBtn>
       </CardContainer>
     </Container>
   );

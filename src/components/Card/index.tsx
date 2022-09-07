@@ -20,16 +20,17 @@ export default function Card({ title, imageUrl, rate, id }: Movie) {
 
   return (
     <S.Card>
-      <S.Poster
-        onClick={() => {
-          navigate(`/detail/${id}`);
-        }}
-        src={url}
-      />
+      <S.ImgWrap>
+        <S.Poster
+          onClick={() => {
+            navigate(`/detail/${id}`);
+          }}
+          src={url}
+        />
+      </S.ImgWrap>
       <S.Title>{title}</S.Title>
       <S.RateContainer>
-        <img src={StarIcon} alt="star_icon" />
-        <S.Rate>{rate}</S.Rate>
+        ⭐️ <S.Rate>{rate}</S.Rate>
       </S.RateContainer>
     </S.Card>
   );

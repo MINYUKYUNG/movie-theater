@@ -1,5 +1,5 @@
-import Logo from '../../../../assets/svgs/logo.svg';
-import Search from '../../../../assets/svgs/search.svg';
+import Logo from '@assets/svgs/logo.svg';
+import Search from '@assets/svgs/search.svg';
 import { useNavigate } from 'react-router-dom';
 import { Container, Searchbar } from './style';
 import { useState } from 'react';
@@ -9,8 +9,10 @@ export default function Navigation() {
   const [searchValue, setSearchValue] = useState('');
 
   const searchNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    navigate('/search_movie', { state: { value: searchValue } });
+    if (searchValue !== '') {
+      e.preventDefault();
+      navigate('/search_movie', { state: { value: searchValue } });
+    }
   };
 
   return (
