@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { useInView } from 'react-intersection-observer';
 import { getSearch } from '@apis/index';
+import { useLocation } from 'react-router-dom';
 
 // how to use
 // this hook parameter all optional
@@ -13,6 +14,7 @@ export const useInfiQry = (
   queryFn?: (pageNum: number) => Promise<any>
 ) => {
   const { ref, inView } = useInView({ threshold: 0.3 });
+  const location = useLocation();
 
   const {
     data: movies,
@@ -32,8 +34,12 @@ export const useInfiQry = (
   );
 
   useEffect(() => {
+    refetch();
+  }, [location.key, queryString, refetch]);
+
+  useEffect(() => {
     if (inView && hasNext) nextPage();
-  }, [inView]);
+  }, [hasNext, inView, nextPage]);
 
   return {
     movies,
