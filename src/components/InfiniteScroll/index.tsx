@@ -17,12 +17,15 @@ export default function InfiniteScroll({ callApi }) {
   const scroll = useRef();
   const [loading, setLoading] = useState(true);
 
-
-  const { data, error, fetchNextPage } = useInfiniteQuery(['posts', `${callApi}`], ({ pageParam = 1 }) => callApi(pageParam), {
-    getNextPageParam: (lastPage) => {
-      return lastPage.page + 1;
-    },
-  });
+  const { data, error, fetchNextPage } = useInfiniteQuery(
+    ['posts'],
+    ({ pageParam = 1 }) => callApi(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.page + 1;
+      },
+    }
+  );
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -34,7 +37,7 @@ export default function InfiniteScroll({ callApi }) {
   });
 
   useEffect(() => {
-    console.log(data);
+    console.log(callApi);
     scroll.current && io.observe(scroll.current);
   }, [data]);
 
