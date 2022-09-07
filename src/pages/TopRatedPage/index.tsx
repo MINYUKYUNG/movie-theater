@@ -6,7 +6,7 @@ export default function TopRatedPage() {
   return (
     <Container>
       <PageTitle title="TOP RANK MOVIES" />
-      <InfiniteScroll callApi={getTopRated}/>
+      <InfiniteScroll api={getTopRated} unique='/movie/top_rated'/>
     </Container>
   );
 }

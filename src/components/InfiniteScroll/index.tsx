@@ -13,8 +13,12 @@ interface MovieList {
   key: number;
 }
 
-export default function InfiniteScroll(api: { callApi: any }) {
-  const { callApi } = api;
+interface Infinite {
+  api: any,
+  unique: string,
+}
+
+export default function InfiniteScroll({ api, unique }: Infinite) {
   const scroll = useRef<HTMLDivElement>(null);
   const [up, setUp] = useState(false);
 
@@ -37,8 +41,8 @@ export default function InfiniteScroll(api: { callApi: any }) {
   };
 
   const { data, error, fetchNextPage } = useInfiniteQuery(
-    ['posts', `${callApi}`],
-    ({ pageParam = 1 }) => callApi(pageParam),
+    ['posts', `${unique}`],
+    ({ pageParam = 1 }) => api(pageParam),
     {
       getNextPageParam: (lastPage) => {
         return lastPage.page + 1;
