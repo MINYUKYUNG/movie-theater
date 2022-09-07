@@ -7,7 +7,6 @@ import {
   SearchMoviePage,
   DetailPage,
 } from '@pages/index';
-import styled from 'styled-components';
 import Layout from '@components/commons/layout';
 
 export default function Router() {
@@ -27,15 +26,3 @@ export default function Router() {
     </BrowserRouter>
   );
 }
-
-const BodyContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-`;
-
-const Contents = styled.div`
-  background: #181818;
-  width: 100%;
-  overflow: scroll;
-`;
