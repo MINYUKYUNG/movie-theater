@@ -14,15 +14,18 @@ interface Movie {
   runtime: number;
   vote_average: number;
   spoken_languages: [{ english_name: string; iso_639_1: string; name: string }];
-  homepage?: string;
   poster_path: string;
   tagline?: string;
   popularity: number;
 }
 
+interface MovieVideos {
+  key: string | undefined;
+}
+
 export default function DetailPage() {
   const [movie, setMovie] = useState<Movie | null>(null);
-  const [movieVideos, setMovieVideos] = useState();
+  const [movieVideos, setMovieVideos] = useState<MovieVideos[]>([]);
 
   const { id } = useParams();
   useEffect(() => {
@@ -33,7 +36,7 @@ export default function DetailPage() {
 
     const getMovieVideos = async () => {
       const result = await getMovieDetailVideos(Number(id));
-      setMovieVideos(result);
+      setMovieVideos(result.results);
     };
 
     getMovieVideos();
@@ -58,15 +61,14 @@ export default function DetailPage() {
               runtime={movie.runtime}
               rate={movie.vote_average}
               languages={movie.spoken_languages}
-              homepage={movie.homepage}
               tagline={movie.tagline}
               popularity={movie.popularity}
             />
           </DetailContainer>
           <S.OverViewText>{movie.overview}</S.OverViewText>`
-          {movieVideos?.results.length > 0 ? (
+          {movieVideos?.length > 0 ? (
             <ReactPlayer
-              url={`https://www.youtube.com/embed/${movieVideos?.results[0].key}`}
+              url={`https://www.youtube.com/embed/${movieVideos[0]?.key}`}
               width="100%"
               height="42vw"
               playing={true}
