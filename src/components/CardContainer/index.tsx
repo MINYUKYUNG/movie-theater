@@ -1,5 +1,9 @@
 import * as S from './style';
 
-export default function CardContainer({ children }: any) {
+type Props = {
+  children: React.ReactNode;
+};
+
+export default function CardContainer({ children }: Props) {
   return <S.CardContainer>{children}</S.CardContainer>;
 }

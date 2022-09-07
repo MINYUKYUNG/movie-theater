@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from 'react-query';
 import { FaChevronCircleUp } from 'react-icons/fa';
 import * as S from './style';
-import Loading from '../Loading'
+import Loading from '../Loading';
 
 interface MovieList {
   id: number;
@@ -13,15 +13,15 @@ interface MovieList {
   key: number;
 }
 
-export default function InfiniteScroll(api: { callApi: any; }) {
+export default function InfiniteScroll(api: { callApi: any }) {
   const { callApi } = api;
-  const scroll = useRef();
+  const scroll = useRef<HTMLDivElement>(null);
   const [up, setUp] = useState(false);
 
   const scrollControl = () => {
     if (window.pageYOffset > 300) setUp(true);
     else setUp(false);
-  }
+  };
 
   useEffect(() => {
     window.addEventListener('scroll', scrollControl);
@@ -36,11 +36,15 @@ export default function InfiniteScroll(api: { callApi: any; }) {
     });
   };
 
-  const { data, error, fetchNextPage } = useInfiniteQuery(['posts', `${callApi}`], ({ pageParam = 1 }) => callApi(pageParam), {
-    getNextPageParam: (lastPage) => {
-      return lastPage.page + 1;
-    },
-  });
+  const { data, error, fetchNextPage } = useInfiniteQuery(
+    ['posts', `${callApi}`],
+    ({ pageParam = 1 }) => callApi(pageParam),
+    {
+      getNextPageParam: (lastPage) => {
+        return lastPage.page + 1;
+      },
+    }
+  );
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -76,12 +80,12 @@ export default function InfiniteScroll(api: { callApi: any; }) {
   });
 
   const scrollTopBtn = () => {
-    if (!up) return null
+    if (!up) return null;
     return (
       <S.ScrollTopBtn onClick={goUp}>
         <FaChevronCircleUp />
       </S.ScrollTopBtn>
-    )
+    );
   };
 
   return (
