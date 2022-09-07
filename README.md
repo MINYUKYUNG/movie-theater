@@ -147,10 +147,7 @@ root
 ### 3. 많은 컴포넌트, 코드를 export 해서 관리해야 하는 경우 index.js 파일을 만들어 import 경로를 줄였습니다.  
 💡 이유 : import 경로가 길어지면 가독성이 떨어지고, 파일 추적이 불편하다는 단점이 있기때문입니다. 이를 줄이기 위해 각 root 폴더에 index.js 파일을 만들어 export default 핸들링을 했습니다.
 
-### 4. Pagination 컴포넌트, usePagination 훅 분리로 재사용 가능하도록 추상화 하였습니다.  
-💡 이유 : 페이지 번호 상태를 훅으로 보내고, 컴포넌트에는 단순히 최대갯수 정보를 넘겨주면 어디서든 사용이 가능하도록 구성하였습니다.
-
-### 5. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
+### 4. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
 💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서, 같은 구조의 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 분리하여 구성했습니다. 
  - Card(카드)
  - CardContainer(Card를 구성하는 컨태이너)
