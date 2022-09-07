@@ -151,11 +151,10 @@ root
 💡 이유 : 페이지 번호 상태를 훅으로 보내고, 컴포넌트에는 단순히 최대갯수 정보를 넘겨주면 어디서든 사용이 가능하도록 구성하였습니다.
 
 ### 5. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
-💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 
+💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서, 같은 구조의 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 분리하여 구성했습니다. 
  - Card(카드)
  - CardContainer(Card를 구성하는 컨태이너)
  - Container(CardContainer를 구성하는 컨태이너)  
- 분리하여 구성했습니다. 
 
 ## API Response 데이터 캐쉬
 ### 1. 캐싱 이란?
