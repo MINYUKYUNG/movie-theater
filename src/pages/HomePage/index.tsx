@@ -1,6 +1,6 @@
 import { getPopular } from '@apis/index';
 import { Container, PageTitle } from '@components/index';
-import BANNER from '../../assets/banner.png';
+import BANNER from '../../assets/images/banner.png';
 import * as S from './style';
 import InfiniteScroll from '@components/InfiniteScroll';
 
