@@ -1,5 +1,6 @@
 import * as S from './style';
 import PeopleIcon from '../../../../assets/svgs/people-icon.svg';
+import StarIcon from '../../../../assets/svgs/star-icon.svg';
 
 interface DetailMovie {
   title: string;
@@ -48,7 +49,10 @@ export default function ExplainContainer({
       </S.FurtherContainer>
       <S.FurtherContainer>
         <S.FurtherTitle>Rating</S.FurtherTitle>
-        <S.FurtherContent>⭐️ {rate}</S.FurtherContent>
+        <S.FurtherContent>
+          <span>⭐️ </span>
+          {rate}
+        </S.FurtherContent>
       </S.FurtherContainer>
       <S.FurtherContainer>
         <S.FurtherTitle>Language</S.FurtherTitle>
@@ -58,7 +62,7 @@ export default function ExplainContainer({
         <S.FurtherTitle>Popularity</S.FurtherTitle>
         <S.FurtherContent>
           <img src={PeopleIcon} alt="icon"></img>
-          <span> {popularity * 1000}</span>
+          <span> {(popularity * 1000).toLocaleString()}</span>
         </S.FurtherContent>
       </S.FurtherContainer>
       {homepage === '' ? (
