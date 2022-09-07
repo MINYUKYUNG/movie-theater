@@ -16,6 +16,7 @@ export const List = styled.li<{ isPath?: boolean }>`
   width: 100%;
   height: 50px;
   color: ${(prop) => (prop.isPath ? `#ffb800` : `${theme.colors.B60}`)};
+  background-color: ${(prop) => (prop.isPath ? `${theme.colors.HOVER}` : '')};
   display: flex;
   align-items: center;
   padding: 0 35px;
