@@ -1,4 +1,4 @@
-import NO_IMAGE from '../../../../assets/no_image.png';
+import NO_IMAGE from '../../../../assets/images/no_image.png';
 import * as S from './style';
 
 interface Poster {
