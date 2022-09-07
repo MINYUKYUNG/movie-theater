@@ -70,7 +70,7 @@ export default function DetailPage() {
             <ReactPlayer
               url={`https://www.youtube.com/embed/${movieVideos?.results[0].key}`}
               width="100%"
-              height="400px"
+              height="42vw"
               playing={true}
               muted={true}
               controls={true}
