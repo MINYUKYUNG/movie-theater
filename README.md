@@ -75,7 +75,6 @@ root
     ├── assets
     ├── components
     ├── hooks
-    ├── libs
     ├── pages
     ├── routes
     ├── styles
@@ -90,7 +89,6 @@ root
 |assets|더미 및 이미지 등 로컬 파일|
 |components|코드 재사용을 위한 컴포넌트 관리형 폴더|
 |hooks|react의 커스텀 hook을 관리하는 폴더|
-|libs|전역함수 및 변수 관리 폴더|
 |pages|url주소에 따른 페이지 구성 폴더|
 |routes|라우팅 관련 처리 폴더|
 |styles|전역으로 사용하는 style 관리 폴더|
@@ -137,3 +135,16 @@ root
 <br />
 
 ## Best Practice
+
+ - home_page
+ - top_rated_page
+ - now_playing_page
+ - up_coming_page
+   
+ 요구사항에 있는 페이지들의 공통점인 영화 리스트들을 카드 컴포넌트 형식으로 배치한다고 생각하여 /src/components 폴더로 
+ - Card
+ - CardContainer
+ - Container
+ 컴포넌트화 시킨 후 각 페이지에서 재사용 하였습니다.
+ 
+ detail_page는 예외로 화면 구성이 달라 DetailPage/components로 구성을 하여 detail_page에서만 쓰이는 컴포넌트들로 구성하였습니다.
