@@ -6,7 +6,7 @@ export default function NowPlayingPage() {
   return (
     <Container>
       <PageTitle title="NOW PLAYING MOVIES" />
-      <InfiniteScroll callApi={getPlaying}/>
+      <InfiniteScroll api={getPlaying} unique='/movie/now_playing'/>
     </Container>
   );
 }
