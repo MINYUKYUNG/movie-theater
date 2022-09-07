@@ -111,6 +111,15 @@ export const getMovieDetail = async (movieId: number) => {
   }
 };
 
+export const getMovieDetailVideos = async (movieId: number) => {
+  try {
+    const response = await apiRoot(`/movie/${movieId}/videos`);
+    return response.data;
+  } catch (err) {
+    throw new Error('not found page');
+  }
+};
+
 // @HTTP: GET
 // How To use
 // 1. import getSearch

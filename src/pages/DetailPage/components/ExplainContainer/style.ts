@@ -10,6 +10,7 @@ export const ExplainContainer = styled.div`
 export const Title = styled.div`
   font-weight: bold;
   font-size: ${({ theme }) => theme.fontSize.SEMI_M};
+  margin-bottom: 8px;
 `;
 
 export const SubTitleContainer = styled.div`
@@ -27,13 +28,14 @@ export const OverView = styled.div`
   margin: 15px 0;
   font-weight: 400;
   font-size: ${({ theme }) => theme.fontSize.SMALL};
+  line-height: 20px;
 `;
 
 export const FurtherContainer = styled.div`
-  widht: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 `;
 
 export const FurtherTitle = styled.div`
@@ -47,4 +49,5 @@ export const FurtherContent = styled.div`
   font-size: ${({ theme }) => theme.fontSize.SMALL};
   font-weight: 400;
   text-align: left;
+  margin-left: 20px;
 `;
