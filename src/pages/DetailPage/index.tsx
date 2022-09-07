@@ -29,13 +29,11 @@ export default function DetailPage() {
     const getMovieDetails = async () => {
       const result = await getMovieDetail(Number(id));
       setMovie(result);
-      console.log(result);
     };
 
     const getMovieVideos = async () => {
       const result = await getMovieDetailVideos(Number(id));
       setMovieVideos(result);
-      console.log(result);
     };
 
     getMovieVideos();

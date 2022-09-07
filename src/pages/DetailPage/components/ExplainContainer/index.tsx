@@ -1,6 +1,5 @@
 import * as S from './style';
 import PeopleIcon from '../../../../assets/svgs/people-icon.svg';
-import StarIcon from '../../../../assets/svgs/star-icon.svg';
 
 interface DetailMovie {
   title: string;
@@ -11,7 +10,7 @@ interface DetailMovie {
   languages: [{ english_name: string; iso_639_1: string; name: string }];
   homepage?: string;
   tagline?: string;
-  popularity?: number;
+  popularity: number;
 }
 
 export default function ExplainContainer({
