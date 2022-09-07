@@ -131,20 +131,42 @@ root
 ![TypeScript](https://img.shields.io/badge/typescript-%23323330.svg?style=for-the-badge&logo=typescript&logoColor=%23F7DF1E) 
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white) 
 ![Styled Components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) 
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white) 
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 <br />
 
-## Best Practice
 
- - home_page
- - top_rated_page
- - now_playing_page
- - up_coming_page
-   
- 요구사항에 있는 페이지들의 공통점인 영화 리스트들을 카드 컴포넌트 형식으로 배치한다고 생각하여 /src/components 폴더로 
- - Card
- - CardContainer
- - Container
- 컴포넌트화 시킨 후 각 페이지에서 재사용 하였습니다.
- 
- detail_page는 예외로 화면 구성이 달라 DetailPage/components로 구성을 하여 detail_page에서만 쓰이는 컴포넌트들로 구성하였습니다.
+## Best Practice
+### 1. 컴포넌트에서 JSX 파일과 styled-component 파일을 분리했습니다.  
+💡 이유 : styled-componet 파일이 길어지면서 한 파일 내에서 JSX 코드와 CSS 코드를 동시에 보기가 어려워져, 가독성을 위해 분리하였습니다. 추가적으로 style 컴포넌트에는 앞에 S.을 포함해 네이밍을 하여, 일반 컴포넌트와 구분하였습니다.
+
+### 2. 공통적으로 쓰는 컴포넌트를 Layout(/src/components/common/layout) 안에서 구성하고 Routes 파일에 적용했습니다. (Navigation, Footer, Header).  
+💡 이유 : 최대한 코드 양을 줄이기 위해서 이며, 코드가 많아지면 빌드 속도 및 렌더링 속도가 저하되기 때문입니다. 또한, import의 빈도도 줄일수 있습니다.
+
+### 3. 많은 컴포넌트, 코드를 export 해서 관리해야 하는 경우 index.js 파일을 만들어 import 경로를 줄였습니다.  
+💡 이유 : import 경로가 길어지면 가독성이 떨어지고, 파일 추적이 불편하다는 단점이 있기때문입니다. 이를 줄이기 위해 각 root 폴더에 index.js 파일을 만들어 export default 핸들링을 했습니다.
+
+### 4. Pagination 컴포넌트, usePagination 훅 분리로 재사용 가능하도록 추상화 하였습니다.  
+💡 이유 : 페이지 번호 상태를 훅으로 보내고, 컴포넌트에는 단순히 최대갯수 정보를 넘겨주면 어디서든 사용이 가능하도록 구성하였습니다.
+
+### 5. 각 라우터에서 공통적으로 쓰일 컴포넌트들을 /src/components 하위 파일로 정리했습니다.  
+💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 
+ - Card(카드)
+ - CardContainer(Card를 구성하는 컨태이너)
+ - Container(CardContainer를 구성하는 컨태이너)  
+ 분리하여 구성했습니다. 
+
+## API Response 데이터 캐쉬
+### 1. 캐싱 이란?
+- 캐싱은 콘솔에서 볼때는 데이터가 업데이트 되고 있으나, 실제로 서버에 요청은 날리지 않는 것 입니다.
+- 전에 가져온 데이터나 계산된 결과값의 복사본을 저장하여, 처리속도를 향상시키고 이를 통해 이후 요청을 더 빠르게 처리할 수 있습니다.
+
+### 2. 사용 라이브러리
+- 캐싱 기능을 사용하기 위해, React Query 라이브러리의 useInfiniteQuery 훅을 사용했습니다.
+- React Query는, 유니크한 키값으로 구분하여 데이터 캐싱이 가능합니다. 문자열과 배열이 사용가능하지만, 컨벤션을 맞추기 위해 보통 배열을 사용합니다.
+- useQuery와 useInfiniteQuery는 유니크한 키값, Promise를 리턴하는 함수, 옵션을 사용할 수 있습니다.
+- staletime은 캐시 데이터의 신선한 상태에 대한 옵션입니다. 따로 설정해주지 않으면, 캐싱 데이터는 항상 stale 하다고 여겨져 서버에 계속적인 요청을 하게됩니다.
+- cachetime은 메모리에 저장되어 있는 캐시 데이터가 언제까지 유지되는지에 대한 옵션입니다.
+- 캐싱된 데이터는 QueryClient()를 통해 조회할 수 있습니다. (+ queriesMap)
+
