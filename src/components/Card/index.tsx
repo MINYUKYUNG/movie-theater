@@ -8,6 +8,7 @@ interface Movie {
   imageUrl?: string;
   rate: number;
   id: number;
+  key: number;
 }
 
 export default function Card({ title, imageUrl, rate, id }: Movie) {

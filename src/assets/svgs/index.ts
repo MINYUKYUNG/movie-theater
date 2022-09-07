@@ -6,3 +6,4 @@ export { ReactComponent as MovieIcon } from './movie-icon.svg';
 export { ReactComponent as PopcornIcon } from './popcorn-icon.svg';
 export { ReactComponent as StarIcon } from './star-icon.svg';
 export { ReactComponent as HomeIcon } from './home-icon.svg';
+export { ReactComponent as Triangle } from './ball-triangle.svg';
