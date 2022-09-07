@@ -10,7 +10,7 @@ export default function Homepage() {
       <S.Banner src={BANNER} />
       <Container>
         <PageTitle title="WHAT’S POPULAR" />
-        <InfiniteScroll callApi={getPopular}/>
+        <InfiniteScroll callApi={getPopular} />
       </Container>
     </div>
   );
