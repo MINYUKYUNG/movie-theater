@@ -1,7 +1,7 @@
 import { Card, CardContainer, Container, PageTitle } from '@components/index';
 import { useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { getSearch } from '@apis/index';
+import { useInfiQry } from '@hooks/useInfiQry';
+import { Fragment } from 'react';
 
 interface MovieList {
   id: number;
@@ -11,28 +11,31 @@ interface MovieList {
 }
 
 export default function SearchMoviePage() {
-  const [movieList, setMovieList] = useState<MovieList[]>([]);
   const location = useLocation();
   const { value } = location.state as { value: string };
+  const { movies, refetch, isLoading, ref } = useInfiQry(value);
 
-  useEffect(() => {
-    getSearch(value, 1).then((res) => setMovieList(res.results));
-  }, [location.key, value]);
-
+  if (isLoading) return <div>loading...</div>;
   return (
     <Container>
       <PageTitle title={`'${value}' 검색결과`} />
       <CardContainer>
-        {!movieList && <div>Loading...</div>}
-        {movieList?.map((movie) => (
-          <Card
-            key={movie.id}
-            id={movie.id}
-            imageUrl={'https://image.tmdb.org/t/p/original' + movie.poster_path}
-            title={movie.title}
-            rate={movie.vote_average}
-          />
+        {movies?.pages.map((group, index) => (
+          <Fragment key={index}>
+            {group.results.map((movie: MovieList) => (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                imageUrl={
+                  'https://image.tmdb.org/t/p/original' + movie.poster_path
+                }
+                title={movie.title}
+                rate={movie.vote_average}
+              />
+            ))}
+          </Fragment>
         ))}
+        <button ref={ref} />
       </CardContainer>
     </Container>
   );

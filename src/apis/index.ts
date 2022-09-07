@@ -116,7 +116,7 @@ export const getMovieDetail = async (movieId: number) => {
 // 1. import getSearch
 // 2. insert getSearch(your search input, page parameter)
 // 3. example) getSearch(harry,1) -> get search movie list, not use res.json() just setState(res.results)
-export const getSearch = async (searchInput: string, pageNumber: number) => {
+export const getSearch = async (pageNumber: number, searchInput?: string) => {
   try {
     const response = await apiRoot(`/search/movie`, {
       params: { query: searchInput, page: pageNumber },
