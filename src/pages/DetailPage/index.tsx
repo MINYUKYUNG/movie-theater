@@ -67,14 +67,19 @@ export default function DetailPage() {
           </DetailContainer>
           <S.OverViewText>{movie.overview}</S.OverViewText>`
           {movieVideos?.length > 0 ? (
-            <ReactPlayer
-              url={`https://www.youtube.com/embed/${movieVideos[0]?.key}`}
-              width="100%"
-              height="42vw"
-              playing={true}
-              muted={true}
-              controls={true}
-            />
+            // <ReactPlayer
+            //   url={`https://www.youtube.com/embed/${movieVideos[0]?.key}`}
+            //   width="100%"
+            //   height="42vw"
+            //   playing={true}
+            //   muted={true}
+            //   controls={true}
+            // />
+            <iframe
+              src={`https://www.youtube.com/embed/${movieVideos[0]?.key}?autoplay=1&mute=1`}
+              frameBorder="0"
+              style={{ width: '100%', height: '42vw' }}
+            ></iframe>
           ) : (
             <S.NoMovieComment>트레일러가 없습니다.</S.NoMovieComment>
           )}
