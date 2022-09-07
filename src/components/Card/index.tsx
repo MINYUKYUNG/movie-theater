@@ -27,7 +27,7 @@ export default function Card({ title, imageUrl, rate, id }: Movie) {
         }}
         src={url}
       />
-      <S.Title onClick={() => console.log(imageUrl)}>{title}</S.Title>
+      <S.Title>{title}</S.Title>
       <S.RateContainer>
         <img src={StarIcon} alt="star_icon" />
         <S.Rate>{rate}</S.Rate>
