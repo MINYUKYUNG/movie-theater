@@ -23,7 +23,7 @@ export default function Card({ title, imageUrl, rate, id }: Movie) {
       <S.ImgWrap>
         <S.Poster
           onClick={() => {
-            navigate(`/detail/${id}`);
+            navigate(`/${id}`);
           }}
           src={url}
         />
