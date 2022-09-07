@@ -13,6 +13,7 @@ export const Container = styled.header`
     cursor: pointer;
     width: auto;
     height: 40px;
+    cursor: pointer;
   }
 `;
 

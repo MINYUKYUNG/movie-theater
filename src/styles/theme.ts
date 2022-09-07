@@ -39,11 +39,11 @@ const colors: Colors = {
 };
 
 const fontSize: FontSize = {
-  X_SMALL: '12px',
-  SMALL: '14px',
-  MEDIUM: '16px',
-  SEMI_M: '21px',
-  TITLE: '24px',
+  X_SMALL: '0.75rem',
+  SMALL: '0.875rem',
+  MEDIUM: '1rem',
+  SEMI_M: '1.25rem',
+  TITLE: '1.5rem',
 };
 
 const theme = {
