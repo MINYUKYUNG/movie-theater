@@ -9,10 +9,12 @@ export default function Navigation() {
   const [searchValue, setSearchValue] = useState('');
 
   const searchNavigate = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (searchValue !== '' || searchValue !== null) {
+    if (searchValue === '' || searchValue === undefined || searchValue === null) {
       e.preventDefault();
-      navigate('/search_movie', { state: { value: searchValue } });
+      return 0;
     }
+    e.preventDefault();
+    navigate('/search_movie', { state: { value: searchValue } });
   };
 
   return (
