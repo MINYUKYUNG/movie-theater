@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import theme from '../../styles/theme'
 
 export const ScrollBox = styled.div``;
 
@@ -9,17 +8,19 @@ export const LoadingBox = styled.div`
 `
 
 export const ScrollTopBtn = styled.button`
-  position: sticky;
+  position: fixed;
   bottom: 20px;
-  left: 90%;
-  width: 30px;
-  height: 30px;
-  color: ${theme.colors.MAIN};
+  right: 1vw;
+  width: 40px;
+  height: 40px;
+  color: ${({ theme }) => theme.colors.MAIN};
   & > svg {
     width: 100%;
     height: 100%;
   }
   &:hover {
-    color: ${theme.colors.RED};
+    color: ${({ theme }) => theme.colors.RED};
+    transition: all 300ms ease-in-out;
+
   }
 `;
