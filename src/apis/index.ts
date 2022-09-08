@@ -70,10 +70,12 @@ export const getMovieDetailVideos = async (movieId: number) => {
 
 export const getSearch = async (pageNumber: number, searchInput?: string) => {
   try {
-    const response = await apiRoot(`/search/movie`, {
-      params: { query: searchInput, page: pageNumber },
-    });
-    return response.data;
+    if (searchInput !== '') {
+      const response = await apiRoot(`/search/movie`, {
+        params: { query: searchInput, page: pageNumber },
+      });
+      return response.data;
+    }
   } catch (err) {
     throw new Error('not found page');
   }
