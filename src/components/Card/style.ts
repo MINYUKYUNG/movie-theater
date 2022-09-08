@@ -26,6 +26,12 @@ export const Title = styled.div`
   line-height: 16px;
   color: ${({ theme }) => theme.colors.WHITE};
   margin-bottom: 5px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 `;
 
 export const RateContainer = styled.div`
