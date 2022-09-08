@@ -20,7 +20,6 @@ export default function Router() {
           <Route path="/top_rated" element={<TopRatedPage />} />
           <Route path="/search_movie" element={<SearchMoviePage />} />
           <Route path="/:id" element={<DetailPage />} />
-          <Route path="*" element={<div>404</div>} />
         </Route>
       </Routes>
     </BrowserRouter>
