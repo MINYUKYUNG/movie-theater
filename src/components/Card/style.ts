@@ -8,7 +8,7 @@ export const Card = styled.div`
 `;
 export const ImgWrap = styled.div`
   width: 100%;
-  height: 18.5vw;
+  aspect-ratio: 1/1.4;
   object-fit: cover;
   border-radius: 10px;
   overflow: hidden;
