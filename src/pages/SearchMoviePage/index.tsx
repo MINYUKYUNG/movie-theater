@@ -44,7 +44,15 @@ export default function SearchMoviePage() {
           </Fragment>
         ))}
         <button ref={ref} />
-        <S.ScrollTopBtn onClick={() => window.scrollTo(0, 0)}>
+        <S.ScrollTopBtn
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              left: 0,
+              behavior: 'smooth',
+            })
+          }
+        >
           <FaChevronCircleUp />
         </S.ScrollTopBtn>
       </CardContainer>
