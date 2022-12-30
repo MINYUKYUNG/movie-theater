@@ -9,11 +9,11 @@
 5. [실행 방법](#실행-방법)
 6. [디렉토리 구조](#디렉토리-구조)
 7. [Best Practice](#best-practice)
+   <br/>
 
 ## 배포 링크
 
 - https://movie-theater.chloemin.com
-  <br/>
   <br/>
 
 ## 기술 스택
@@ -152,5 +152,3 @@ root
 5.  공통 컴포넌트는 components 디렉토리에 구성
 
     💡 이유 : HomePage, TopRatedPage, NowPlayingPage, UpComingPage, SearchPage에서 동일한 카드 컴포넌트 형식으로 영화정보를 구성하여 보여주려고 하기 때문에 분리하여 구성했습니다.
-
-    <br/>
