@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export const apiRoot = axios.create({
   method: 'get',
-  baseURL: process.env.REACT_APP_API_URL,
-  params: { api_key: process.env.REACT_APP_API_KEY, language: 'ko-kr' },
+  baseURL: 'https://api.themoviedb.org/3',
+  params: { api_key: '8623a46232b8a504ef925ec8ef0d57a9', language: 'ko-kr' },
 });
 
 export const getPopular = async (pageNumber: number) => {
