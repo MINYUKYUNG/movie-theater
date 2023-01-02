@@ -42,7 +42,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
 
   const { data, error, fetchNextPage } = useInfiniteQuery(
     ['posts', `${unique}`],
-    ({ pageParam = 1 }) => api(pageParam),
+    async ({ pageParam = 1 }) => await api(pageParam),
     {
       getNextPageParam: (lastPage) => {
         return lastPage.page + 1;
@@ -70,19 +70,21 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
   if (error) return <S.LoadingBox>failed to load</S.LoadingBox>;
 
   const CARD_IMG_URL = 'https://image.tmdb.org/t/p/original';
-  const cards = data.pages.map((page) => {
-    return page.results?.map((movie: MovieList) => {
-      return (
-        <Card
-          key={movie.id}
-          id={movie.id}
-          imageUrl={`${CARD_IMG_URL}${movie.poster_path}`}
-          title={movie.title}
-          rate={movie.vote_average}
-        />
-      );
+  const cards =
+    data.pages.length &&
+    data.pages.map((page) => {
+      return page.results?.map((movie: MovieList) => {
+        return (
+          <Card
+            key={movie.id}
+            id={movie.id}
+            imageUrl={`${CARD_IMG_URL}${movie.poster_path}`}
+            title={movie.title}
+            rate={movie.vote_average}
+          />
+        );
+      });
     });
-  });
 
   const scrollTopBtn = () => {
     if (!up) return null;
@@ -95,7 +97,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
 
   return (
     <S.ScrollBox>
-      <CardContainer>{cards}</CardContainer>
+      <CardContainer>{data.pages.length && cards}</CardContainer>
       <S.LoadingBox ref={scroll}>
         <Loading />
       </S.LoadingBox>
