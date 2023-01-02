@@ -62,7 +62,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
   });
 
   useEffect(() => {
-    data && scroll.current && io.observe(scroll.current);
+    scroll.current && io.observe(scroll.current);
   }, [data]);
 
   if (!data) return <S.LoadingBox>loading...</S.LoadingBox>;
@@ -71,7 +71,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
   // eslint-disable-next-line no-console
   console.log(data);
   const CARD_IMG_URL = 'https://image.tmdb.org/t/p/original';
-  const cards = data?.pages.map((page) => {
+  const cards = data.pages.map((page) => {
     return page.results?.map((movie: MovieList) => {
       return (
         <Card
@@ -96,7 +96,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
 
   return (
     <S.ScrollBox>
-      <CardContainer>{data && cards}</CardContainer>
+      <CardContainer>{cards}</CardContainer>
       <S.LoadingBox ref={scroll}>
         <Loading />
       </S.LoadingBox>

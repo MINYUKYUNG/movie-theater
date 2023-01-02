@@ -28,22 +28,21 @@ export default function SearchMoviePage() {
     <Container>
       <PageTitle title={`'${value}' 검색결과`} />
       <CardContainer>
-        {movies &&
-          movies?.pages.map((group, index) => (
-            <Fragment key={index}>
-              {group.results.map((movie: MovieList) => (
-                <Card
-                  key={movie.id}
-                  id={movie.id}
-                  imageUrl={
-                    'https://image.tmdb.org/t/p/original' + movie.poster_path
-                  }
-                  title={movie.title}
-                  rate={movie.vote_average}
-                />
-              ))}
-            </Fragment>
-          ))}
+        {movies?.pages.map((group, index) => (
+          <Fragment key={index}>
+            {group.results.map((movie: MovieList) => (
+              <Card
+                key={movie.id}
+                id={movie.id}
+                imageUrl={
+                  'https://image.tmdb.org/t/p/original' + movie.poster_path
+                }
+                title={movie.title}
+                rate={movie.vote_average}
+              />
+            ))}
+          </Fragment>
+        ))}
         <button ref={ref} />
         <S.ScrollTopBtn
           onClick={() =>
