@@ -50,6 +50,7 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
     }
   );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -63,13 +64,11 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
 
   useEffect(() => {
     scroll.current && io.observe(scroll.current);
-  }, [data]);
+  }, [io]);
 
   if (!data) return <S.LoadingBox>loading...</S.LoadingBox>;
   if (error) return <S.LoadingBox>failed to load</S.LoadingBox>;
 
-  // eslint-disable-next-line no-console
-  console.log(data);
   const CARD_IMG_URL = 'https://image.tmdb.org/t/p/original';
   const cards = data.pages.map((page) => {
     return page.results?.map((movie: MovieList) => {
