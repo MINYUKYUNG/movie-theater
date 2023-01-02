@@ -95,15 +95,11 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
 
   return (
     <S.ScrollBox>
-      {data && data.pages[0].results.length && (
-        <>
-          <CardContainer>{cards}</CardContainer>
-          <S.LoadingBox ref={scroll}>
-            <Loading />
-          </S.LoadingBox>
-          {scrollTopBtn()}
-        </>
-      )}
+      <CardContainer>{cards}</CardContainer>
+      <S.LoadingBox ref={scroll}>
+        <Loading />
+      </S.LoadingBox>
+      {scrollTopBtn()}
     </S.ScrollBox>
   );
 }
