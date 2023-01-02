@@ -14,8 +14,8 @@ interface MovieList {
 }
 
 interface Infinite {
-  api: any,
-  unique: string,
+  api: any;
+  unique: string;
 }
 
 export default function InfiniteScroll({ api, unique }: Infinite) {
@@ -69,19 +69,21 @@ export default function InfiniteScroll({ api, unique }: Infinite) {
   if (error) return <S.LoadingBox>failed to load</S.LoadingBox>;
 
   const CARD_IMG_URL = 'https://image.tmdb.org/t/p/original';
-  const cards = data.pages.map((page) => {
-    return page.results.map((movie: MovieList) => {
-      return (
-        <Card
-          key={movie.id}
-          id={movie.id}
-          imageUrl={`${CARD_IMG_URL}${movie.poster_path}`}
-          title={movie.title}
-          rate={movie.vote_average}
-        />
-      );
+  const cards =
+    data &&
+    data.pages.map((page) => {
+      return page.results.map((movie: MovieList) => {
+        return (
+          <Card
+            key={movie.id}
+            id={movie.id}
+            imageUrl={`${CARD_IMG_URL}${movie.poster_path}`}
+            title={movie.title}
+            rate={movie.vote_average}
+          />
+        );
+      });
     });
-  });
 
   const scrollTopBtn = () => {
     if (!up) return null;
